@@ -13,6 +13,7 @@ import { CgClose } from "react-icons/cg";
 
 import { Context } from "../context/contextApi";
 import Loader from "../shared/Loader";
+import { handler } from "@tailwindcss/line-clamp";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -36,6 +37,11 @@ const Header = () => {
 
     const { pathname } = useLocation();
     const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
+    // const handlerCloseMenu=()=>{
+    //     setMobileMenu(false)}
+    // const handlerOpenMenu=()=>{
+    //     setMobileMenu(true)}
+    
 
     return (
         <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black  dark:bg-black">
@@ -47,7 +53,7 @@ const Header = () => {
                         className="flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]"
                         onClick={mobileMenuToggle}
                     >
-                        {mobileMenu ? (
+                        {!mobileMenu ? (
                             <CgClose className="text-white text-xl" />
                         ) : (
                             <SlMenu className="text-white text-xl" />
@@ -56,11 +62,11 @@ const Header = () => {
                 )}
                 <Link to="/" className="flex h-5 items-center">
                    <img
-                        className="w-12 "
+                        className="w-12"
                         src={vstream}
                         alt="Youtube"
                     />
-                    <h1 className="text-2xl font-bold bg-gradient-to-l from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text">Stream</h1>
+                    <h1 className="md:block hidden text-2xl font-bold bg-gradient-to-l from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text">Stream</h1>
                 </Link>
             </div>
             <div className="group flex items-center">
