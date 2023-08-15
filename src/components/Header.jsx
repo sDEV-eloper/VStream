@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import vstream from "../images/vstream.png";
+import myProfile from "../images/profile2.png"
 
 
 import { SlMenu } from "react-icons/sl";
@@ -55,7 +56,7 @@ const Header = () => {
                 )}
                 <Link to="/" className="flex h-5 items-center">
                    <img
-                        className="w-12"
+                        className="w-12 "
                         src={vstream}
                         alt="Youtube"
                     />
@@ -92,8 +93,8 @@ const Header = () => {
                         <FiBell className="text-white text-xl cursor-pointer" />
                     </div>
                 </div>
-                <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4">
-                    <img src="https://xsgames.co/randomusers/assets/avatars/female/67.jpg" alt=""/>
+                <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4  items-center justify-center bg-yellow-400">
+                    <img src={myProfile} alt=""/>
                 </div>
             </div>
         </div>
