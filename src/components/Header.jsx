@@ -37,7 +37,7 @@ const Header = () => {
     const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
 
     return (
-        <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black border-b dark:bg-black">
+        <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black  dark:bg-black">
             {loading && <Loader />}
 
             <div className="flex h-5 items-center">
@@ -77,7 +77,7 @@ const Header = () => {
                     />
                 </div>
                 <button
-                    className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]"
+                    className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-gray-800"
                     onClick={() => searchQueryHandler("searchButton")}
                 >
                     <IoIosSearch className="text-white text-xl" />
