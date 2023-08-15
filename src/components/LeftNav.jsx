@@ -6,7 +6,7 @@ import { categories } from "../utils/constants";
 import { Context } from "../context/contextApi";
 
 const LeftNav = () => {
-    const { selectCategories, setSelectCategories, mobileMenu } =
+    const { selectCategories, setSelectCategories, mobileMenu } = 
         useContext(Context);
 
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const LeftNav = () => {
                                 }}
                                 className={`${
                                     selectCategories === item.name
-                                        ? "bg-white/[0.15]"
+                                        ? "bg-gradient-to-l from-green-300 via-blue-500 to-purple-600 "
                                         : ""
                                 }`}
                             />
@@ -55,7 +55,7 @@ const LeftNav = () => {
                 })}
                 <hr className="my-5 border-white/[0.2]" />
                 <div className="text-white/[0.5] text-[12px]">
-                    Clone by: JS Dev Hindi
+                    Created by: Suraj Singh
                 </div>
             </div>
         </div>

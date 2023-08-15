@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import ytLogo from "../images/yt-logo.png";
-import ytLogoMobile from "../images/yt-logo-mobile.png";
+import vstream from "../images/vstream.png";
+import myProfile from "../images/profile2.png"
+
 
 import { SlMenu } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
@@ -37,7 +38,7 @@ const Header = () => {
     const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
 
     return (
-        <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black">
+        <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black  dark:bg-black">
             {loading && <Loader />}
 
             <div className="flex h-5 items-center">
@@ -54,16 +55,12 @@ const Header = () => {
                     </div>
                 )}
                 <Link to="/" className="flex h-5 items-center">
-                    <img
-                        className="h-full hidden dark:md:block"
-                        src={ytLogo}
+                   <img
+                        className="w-12 "
+                        src={vstream}
                         alt="Youtube"
                     />
-                    <img
-                        className="h-full md:hidden"
-                        src={ytLogoMobile}
-                        alt="Youtube"
-                    />
+                    <h1 className="text-2xl font-bold bg-gradient-to-l from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text">Stream</h1>
                 </Link>
             </div>
             <div className="group flex items-center">
@@ -81,7 +78,7 @@ const Header = () => {
                     />
                 </div>
                 <button
-                    className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]"
+                    className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-gray-800"
                     onClick={() => searchQueryHandler("searchButton")}
                 >
                     <IoIosSearch className="text-white text-xl" />
@@ -96,8 +93,8 @@ const Header = () => {
                         <FiBell className="text-white text-xl cursor-pointer" />
                     </div>
                 </div>
-                <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4">
-                    <img src="https://xsgames.co/randomusers/assets/avatars/female/67.jpg" />
+                <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4  items-center justify-center bg-yellow-400">
+                    <img src={myProfile} alt=""/>
                 </div>
             </div>
         </div>
