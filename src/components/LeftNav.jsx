@@ -6,7 +6,7 @@ import { categories } from "../utils/constants";
 import { Context } from "../context/contextApi";
 
 const LeftNav = () => {
-    const { selectCategories, setSelectCategories, mobileMenu } = 
+    const { selectCategories, setSelectCategories, mobileMenu, setMobileMenu } = 
         useContext(Context);
 
     const navigate = useNavigate();
@@ -24,13 +24,11 @@ const LeftNav = () => {
         }
     };
    console.log(" mobileMenu: ",  mobileMenu);
-const mobileMenuClass=mobileMenu? 'md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all translate-x-0' : ''
+const mobileMenuClass=mobileMenu? 'md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all translate-x-0' : 'md:relative'
 
     return (
         <div
-        // className={`md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all ${
-        //     mobileMenu ? "translate-x-0" : ""
-        // }`}
+        // className={`md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative  translate-x-[-240px] md:translate-x-0 transition-all `}
             className={`w-[240px] overflow-y-auto h-full py-4 bg-black absolute z-10 ${mobileMenuClass}` }
         >
             <div className="flex px-5 flex-col">
@@ -44,6 +42,7 @@ const mobileMenuClass=mobileMenu? 'md:relative z-10 translate-x-[-240px] md:tran
                                 action={() => {
                                     clickHandler(item.name, item.type);
                                     navigate("/");
+                                    setMobileMenu(!mobileMenu);
                                 }}
                                 className={`${
                                     selectCategories === item.name
