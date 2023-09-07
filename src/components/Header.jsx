@@ -1,27 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import vstream from "../images/vstream.png";
 import myProfile from "../images/profile2.png"
-
-
 import { SlMenu } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
 import { RiVideoAddLine } from "react-icons/ri";
 import { FiBell } from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
-
 import { Context } from "../context/contextApi";
 import Loader from "../shared/Loader";
-import { handler } from "@tailwindcss/line-clamp";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import SearchSuggestionData from "./SearchSuggestionData";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchSuggestions, setSearchSuggestions] = useState([]);
 
     const { loading, mobileMenu, setMobileMenu } = useContext(Context);
-
     const navigate = useNavigate();
-
     const searchQueryHandler = (event) => {
         if (
             (event?.key === "Enter" || event === "searchButton") &&
@@ -37,12 +34,18 @@ const Header = () => {
 
     const { pathname } = useLocation();
     const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
-    // const handlerCloseMenu=()=>{
-    //     setMobileMenu(false)}
-    // const handlerOpenMenu=()=>{
-    //     setMobileMenu(true)}
-    
 
+//Make search api call on debounce of 200ms
+useEffect(()=>{
+    getSearchSuggestions()
+},[searchQuery])
+
+
+const getSearchSuggestions=async()=>{
+    const data= await fetch(YOUTUBE_SEARCH_API+`${searchQuery}`)
+    const json= await data.json();
+    setSearchSuggestions(json[1]);
+}
     return (
         <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black  dark:bg-black">
             {loading && <Loader />}
@@ -74,6 +77,7 @@ const Header = () => {
                     <div className="w-10 items-center justify-center hidden group-focus-within:md:flex">
                         <IoIosSearch className="text-white text-xl" />
                     </div>
+                    <div className="flex flex-col items-center justify-center relative ">
                     <input
                         type="text"
                         className="bg-transparent outline-none text-white pr-5 pl-5 md:pl-0 w-44 md:group-focus-within:pl-0 md:w-64 lg:w-[500px]"
@@ -82,6 +86,8 @@ const Header = () => {
                         placeholder="Search"
                         value={searchQuery}
                     />
+                    <SearchSuggestionData searchSuggestions={searchSuggestions}/>
+                    </div>
                 </div>
                 <button
                     className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-gray-800"
@@ -108,3 +114,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
