@@ -31,3 +31,5 @@ export const categories = [
     { name: "Help", icon: <FiHelpCircle />, type: "menu" },
     { name: "Send feedback", icon: <RiFeedbackLine />, type: "menu" },
 ];
+
+export const YOUTUBE_SEARCH_API='http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q='
