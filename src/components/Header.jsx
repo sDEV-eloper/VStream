@@ -37,11 +37,14 @@ const Header = () => {
 
 //Make search api call on debounce of 200ms
 useEffect(()=>{
-    getSearchSuggestions()
+    const timer=setTimeout(()=>getSearchSuggestions(),200)
+   return ()=>{clearTimeout(timer)}
 },[searchQuery])
 
 
 const getSearchSuggestions=async()=>{
+
+    console.log("Api call -", searchQuery)
     const data= await fetch(YOUTUBE_SEARCH_API+`${searchQuery}`)
     const json= await data.json();
     setSearchSuggestions(json[1]);
@@ -86,7 +89,7 @@ const getSearchSuggestions=async()=>{
                         placeholder="Search"
                         value={searchQuery}
                     />
-                    <SearchSuggestionData searchSuggestions={searchSuggestions}/>
+                  {searchQuery &&  <SearchSuggestionData searchSuggestions={searchSuggestions}/>}
                     </div>
                 </div>
                 <button
