@@ -16,7 +16,7 @@ import SearchSuggestionData from "./SearchSuggestionData";
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchSuggestions, setSearchSuggestions] = useState([]);
-
+const [showSuggestion, setShowSuggestion]=useState(true)
     const { loading, mobileMenu, setMobileMenu } = useContext(Context);
     const navigate = useNavigate();
     const searchQueryHandler = (event) => {
@@ -44,7 +44,6 @@ useEffect(()=>{
 
 const getSearchSuggestions=async()=>{
 
-    console.log("Api call -", searchQuery)
     const data= await fetch(YOUTUBE_SEARCH_API+`${searchQuery}`)
     const json= await data.json();
     setSearchSuggestions(json[1]);
@@ -88,8 +87,10 @@ const getSearchSuggestions=async()=>{
                         onKeyUp={searchQueryHandler}
                         placeholder="Search"
                         value={searchQuery}
+                        onFocus={()=>{setShowSuggestion(true)}}
+                        onBlur={()=>{setShowSuggestion(false)}}
                     />
-                  {searchQuery &&  <SearchSuggestionData searchSuggestions={searchSuggestions}/>}
+                  {searchQuery && showSuggestion &&  <SearchSuggestionData searchSuggestions={searchSuggestions}/>}
                     </div>
                 </div>
                 <button
