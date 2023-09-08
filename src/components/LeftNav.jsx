@@ -23,7 +23,7 @@ const LeftNav = () => {
                 break;
         }
     };
-   console.log(" mobileMenu: ",  mobileMenu);
+
 const mobileMenuClass=mobileMenu? 'md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all translate-x-0' : 'md:relative'
 
     return (
@@ -33,7 +33,6 @@ const mobileMenuClass=mobileMenu? 'md:relative z-10 translate-x-[-240px] md:tran
         >
             <div className="flex px-5 flex-col">
                 {categories.map((item) => {
-                    console.log("item.name: ", item.name);
                     return (
                         <React.Fragment key={item.name}>
                             <LeftNavMenuItem
